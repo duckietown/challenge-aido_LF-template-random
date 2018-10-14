@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import gym
+import numpy as np
 # noinspection PyUnresolvedReferences
 import gym_duckietown_agent  # DO NOT CHANGE THIS IMPORT (the environments are defined here)
-import numpy as np
 from duckietown_challenges import wrap_solution, ChallengeSolution, ChallengeInterfaceSolution, InvalidSubmission
 
 
@@ -25,6 +25,8 @@ def solve(gym_environment, cis):
     while True:
         # we passe the observation to our model, and we get an action in return
         action = np.random.uniform(-1, +1, 2)
+        # action = np.random.uniform(0, 0.5, 2) + 0.3
+        # action = [0.5, 0.5]
         # we tell the environment to perform this action and we get some info back in OpenAI Gym style
         observation, reward, done, info = env.step(action)
         # here you may want to compute some stats, like how much reward are you getting
