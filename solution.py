@@ -25,11 +25,15 @@ def solve(gym_environment, cis):
     # While there are no signal of completion (simulation done)
     # we run the predictions for a number of episodes, don't worry, we have the control on this part
     while True:
-        # we passe the observation to our model, and we get an action in return
-        action = np.random.uniform(-1, +1, 2)
-        # action = np.random.uniform(0, 0.5, 2) + 0.3
-        # action = [0.5, 0.5]
+        # we pass the observation to our model, and we get an action in return
+        # action = f(observation)
 
+        # random action
+        action = np.random.uniform(-1, +1, 2)
+        # go straight
+        # action = [0.5, 0.5]
+        # go straight with some deviation
+        action = np.random.uniform(0, 0.1, 2) + 0.3
 
         # we tell the environment to perform this action and we get some info back in OpenAI Gym style
         observation, reward, done, info = env.step(action)
