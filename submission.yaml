@@ -1,5 +1,7 @@
-challenge: aido1_LF1_r2-v3
-protocol: [aido1_remote1-v3, aido1_remote2-v3]
+challenge: aido1_LF1_r3-v3
+protocol: [aido1_remote1-v3, aido1_remote2-v3, aido1_remote3-v3]
+# aido1_remote1-v3: u = angular, linear
+# aido1_remote2-v3: u = wheel_left, wheel_right
 user-label: "Random execution"
 description: |
     This is a simple template for an agent that babbles random commands.

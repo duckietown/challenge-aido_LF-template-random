@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import traceback
+
 import gym
 import numpy as np
 # noinspection PyUnresolvedReferences
@@ -27,6 +29,8 @@ def solve(gym_environment, cis):
         action = np.random.uniform(-1, +1, 2)
         # action = np.random.uniform(0, 0.5, 2) + 0.3
         # action = [0.5, 0.5]
+
+
         # we tell the environment to perform this action and we get some info back in OpenAI Gym style
         observation, reward, done, info = env.step(action)
         # here you may want to compute some stats, like how much reward are you getting
@@ -51,11 +55,12 @@ class Submission(ChallengeSolution):
 
         gym_environment = params['env']
 
-        try:
-            cis.info('Starting.')
-            solve(gym_environment, cis)  # let's try to solve the challenge, exciting ah?
-        except BaseException as e:
-            raise InvalidSubmission(str(e))
+        # try:
+        cis.info('Starting.')
+        solve(gym_environment, cis)  # let's try to solve the challenge, exciting ah?
+        # except BaseException as e:
+        #     msg = 'Exception while running solve():\n%s' % traceback.format_exc(e)
+        #     raise InvalidSubmission(msg)
 
         cis.set_solution_output_dict({})
         cis.info('Finished.')
