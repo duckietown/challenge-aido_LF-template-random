@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-import traceback
 
 import gym
 import numpy as np
+
 # noinspection PyUnresolvedReferences
 import gym_duckietown_agent  # DO NOT CHANGE THIS IMPORT (the environments are defined here)
-from duckietown_challenges import wrap_solution, ChallengeSolution, ChallengeInterfaceSolution, InvalidSubmission
+from duckietown_challenges import wrap_solution, ChallengeSolution, ChallengeInterfaceSolution
 
 
 def solve(gym_environment, cis):
