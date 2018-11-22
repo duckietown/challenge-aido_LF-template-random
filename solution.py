@@ -8,6 +8,11 @@ import gym_duckietown_agent  # DO NOT CHANGE THIS IMPORT (the environments are d
 from duckietown_challenges import wrap_solution, ChallengeSolution, ChallengeInterfaceSolution
 
 
+def check_valid_observations(observations):
+    assert isinstance(observations, np.ndarray), type(observations)
+    assert observations.shape == (480, 640, 3), observations.shape
+
+
 def solve(gym_environment, cis):
     # python has dynamic typing, the line below can help IDEs with autocompletion
     assert isinstance(cis, ChallengeInterfaceSolution)
@@ -22,6 +27,8 @@ def solve(gym_environment, cis):
     # Then we make sure we have a connection with the environment and it is ready to go
     cis.info('Reset environment')
     observation = env.reset()
+
+    check_valid_observations(observation)
     # While there are no signal of completion (simulation done)
     # we run the predictions for a number of episodes, don't worry, we have the control on this part
     while True:
@@ -37,6 +44,8 @@ def solve(gym_environment, cis):
 
         # we tell the environment to perform this action and we get some info back in OpenAI Gym style
         observation, reward, done, info = env.step(action)
+
+        check_valid_observations(observation)
         # here you may want to compute some stats, like how much reward are you getting
         # notice, this reward may no be associated with the challenge score.
 
