@@ -18,3 +18,6 @@ test-data1-direct:
 test-data1-docker:
 	docker run -i $(tag) < test_data/in1.json > test_data/out1.json
 
+test:
+	docker-compose down -v
+	docker-compose up --build  -V --abort-on-container-exit

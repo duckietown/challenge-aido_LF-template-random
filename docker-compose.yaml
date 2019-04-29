@@ -1,0 +1,28 @@
+version: '2.4'
+services:
+  bridge:
+    build:
+      context: ${DT_ENV_DEVELOPER}/aido/challenge-aido_LF/duckiebot
+    volumes:
+      - fifos2:/fifos
+    network_mode: host
+    privileged: true
+    environment:
+       HOSTNAME: duckiebot
+       ROS_MASTER_URI: http://192.168.0.154:11311
+       DUCKIEBOT_NAME: duckiebot
+       DUCKIEFLEET_ROOT: /data/config
+       DUCKIEBOT_IP: 192.168.0.154
+       ROS_IP: 192.168.0.154
+       DUCKIETOWN_SERVER: 192.168.0.154
+       QT_X11_NO_MITSHM: 1
+  agent:
+    build:
+      context: .
+    environment:
+      AIDONODE_DATA_IN: /fifos/agent-in
+      AIDONODE_DATA_OUT: fifo:/fifos/agent-out
+    volumes:
+      - fifos2:/fifos
+volumes:
+  fifos2:
