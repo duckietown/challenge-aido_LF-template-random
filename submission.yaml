@@ -7,4 +7,3 @@ protocol: aido2_db18_agent-z2
 user-label: "challenge-aido_LF-template-random - random_agent"
 # any JSON payload
 user-payload: {}
-
