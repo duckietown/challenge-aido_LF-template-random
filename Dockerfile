@@ -1,4 +1,4 @@
-FROM duckietown/aido2-base-python3:z2
+FROM duckietown/aido3-base-python3:daffy
 
 WORKDIR /project
 
