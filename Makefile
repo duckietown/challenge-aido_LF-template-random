@@ -12,9 +12,11 @@ build-no-cache:
 push: build
 	docker push $(tag)
 
-test-data1-direct:
-	./random_agent.py < test_data/in1.json > test_data/out1.json
 
-test-data1-docker:
-	docker run -i $(tag) < test_data/in1.json > test_data/out1.json
+update-reqs: # todo
 
+submit: update-reqs
+	dts challenges submit
+
+submit-bea: update-reqs
+	dts challenges submit --impersonate 1639 --challenge all --retire-same-label

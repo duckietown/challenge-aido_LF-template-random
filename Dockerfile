@@ -1,10 +1,11 @@
-FROM duckietown/aido3-base-python3:daffy
+ARG AIDO_REGISTRY
+FROM ${AIDO_REGISTRY}/duckietown/aido-base-python3:daffy-aido4
 
 WORKDIR /project
 
-COPY requirements.txt .
+COPY requirements.* ./
 
-RUN pip install -r requirements.txt && rm -rf /root/.cache
+RUN pip install -r requirements.resolved && rm -rf /root/.cache
 
 COPY . .
 
