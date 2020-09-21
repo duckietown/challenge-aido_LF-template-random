@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 
-import numpy as np
+import io
 
-from aido_schemas import EpisodeStart, protocol_agent_duckiebot1, PWMCommands, Duckiebot1Commands, LEDSCommands, RGB, wrap_direct, Context, Duckiebot1Observations, JPGImage
+import numpy as np
+from PIL import Image
+
+from aido_schemas import (Context, Duckiebot1Commands, Duckiebot1Observations, EpisodeStart, JPGImage,
+                          LEDSCommands, protocol_agent_duckiebot1, PWMCommands, RGB, wrap_direct)
 
 
 class RandomAgent:
+    n: int
 
     def init(self, context: Context):
         self.n = 0
@@ -17,7 +22,7 @@ class RandomAgent:
     def on_received_episode_start(self, context: Context, data: EpisodeStart):
         context.info(f'Starting episode "{data.episode_name}".')
 
-    def on_received_observations(self,  data: Duckiebot1Observations):
+    def on_received_observations(self, context: Context, data: Duckiebot1Observations):
         camera: JPGImage = data.camera
         _rgb = jpg2rgb(camera.jpg_data)
 
@@ -41,10 +46,10 @@ class RandomAgent:
     def finish(self, context: Context):
         context.info('finish()')
 
+
 def jpg2rgb(image_data: bytes) -> np.ndarray:
     """ Reads JPG bytes as RGB"""
-    from PIL import Image
-    import io
+
     im = Image.open(io.BytesIO(image_data))
     im = im.convert('RGB')
     data = np.array(im)
