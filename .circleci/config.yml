@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  jira: circleci/jira@1.2.2
 workflows:
   version: 2
   test:
@@ -33,3 +35,4 @@ jobs:
           name: Submit
           command: |
             make submit-bea
+      - jira/notify
