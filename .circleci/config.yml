@@ -45,7 +45,7 @@ jobs:
           name: Install deps
           # language=bash
           command: |
-            pip install --use-feature=2020-resolver duckietown-shell
+            pip install --use-feature=2020-resolver duckietown-shell duckietown-challenges-daffy
             dts --set-version daffy
             dts update
       - run:
