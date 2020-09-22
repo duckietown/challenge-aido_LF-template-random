@@ -31,8 +31,8 @@ jobs:
           name: Install Docker Compose
           # language=bash
           command: |
-            curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VER}/docker-compose-`uname
-            -s`-`uname -m` > ~/docker-compose
+            plt=docker-compose-`uname -s`-`uname -m`
+            curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VER}/${plt} > ~/docker-compose
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
       - setup_remote_docker:
