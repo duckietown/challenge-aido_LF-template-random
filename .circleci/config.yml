@@ -12,28 +12,58 @@ jobs:
   submit:
     docker:
       - image: python:3.8
+    environment:
+      DOCKER_VER: "18.09.2"
+      COMPOSE_VER: "1.23.2"
 #    machine: true
     steps:
       - checkout
       - run:
+          name: Install Docker client
+          # language=bash
+          command: |
+            set -x
+            curl -L -o /tmp/docker-${DOCKER_VER}.tgz \
+              https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VER}.tgz
+            tar -xz -C /tmp -f /tmp/docker-${DOCKER_VER}.tgz
+            mv /tmp/docker/* /usr/bin
+      - run:
+          name: Install Docker Compose
+          # language=bash
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VER}/docker-compose-`uname
+            -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            mv ~/docker-compose /usr/local/bin/docker-compose
+      - setup_remote_docker:
+          docker_layer_caching: true
+#      - run:
+#          name: Install Docker
+#          command: |
+#            apk add docker-cli
+      - run:
           name: Install deps
+          # language=bash
           command: |
             pip install --use-feature=2020-resolver duckietown-shell
             dts --set-version daffy
             dts update
       - run:
           name: Setup token
+          # language=bash
           command: |
-            dts tok verify $token_dt1_bea
-            dts tok set $token_dt1_bea
+            dts tok verify ${token_dt1_bea}
+            dts tok set ${token_dt1_bea}
 
       - run:
           name: "Challenges info"
+          # language=bash
           command: |
             dts challenges info
 
       - run:
           name: Submit
+          # language=bash
           command: |
             make submit-bea
       - jira/notify
