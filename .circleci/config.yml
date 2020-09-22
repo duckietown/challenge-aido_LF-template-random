@@ -1,0 +1,33 @@
+version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - submit:
+          context: pip-staging
+  submit:
+#    docker:
+#      - image: python:3.6
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Install deps
+          command: |
+            pip install duckietown-shell
+
+      - run:
+          name: Setup token
+          command: |
+
+            dts tok set $token_dt1_bea
+            dts tok verify
+      - run:
+          name: "Challenges info"
+          command: |
+            dts challenges info
+
+      - run:
+          name: Submit
+          command: |
+            make submit-bea
