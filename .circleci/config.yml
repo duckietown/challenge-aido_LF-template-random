@@ -18,15 +18,15 @@ jobs:
       - run:
           name: Install deps
           command: |
-            pip install duckietown-shell
+            pip install --use-feature=2020-resolver duckietown-shell
             dts --set-version daffy
             dts update
       - run:
           name: Setup token
           command: |
-
+            dts tok verify $token_dt1_bea
             dts tok set $token_dt1_bea
-            dts tok verify
+
       - run:
           name: "Challenges info"
           command: |
