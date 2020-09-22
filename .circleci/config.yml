@@ -19,7 +19,8 @@ jobs:
           name: Install deps
           command: |
             pip install duckietown-shell
-
+            dts --set-version daffy
+            dts update
       - run:
           name: Setup token
           command: |
