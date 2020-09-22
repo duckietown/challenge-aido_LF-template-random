@@ -37,10 +37,6 @@ jobs:
             mv ~/docker-compose /usr/local/bin/docker-compose
       - setup_remote_docker:
           docker_layer_caching: true
-#      - run:
-#          name: Install Docker
-#          command: |
-#            apk add docker-cli
       - run:
           name: Install deps
           # language=bash
