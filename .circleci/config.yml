@@ -10,9 +10,9 @@ workflows:
 
 jobs:
   submit:
-#    docker:
-#      - image: python:3.6
-    machine: true
+    docker:
+      - image: python:3.8
+#    machine: true
     steps:
       - checkout
       - run:
