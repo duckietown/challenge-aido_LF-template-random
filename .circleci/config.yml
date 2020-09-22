@@ -30,7 +30,7 @@ jobs:
           command: |
             dts tok verify ${token_dt1_bea}
             dts tok set ${token_dt1_bea}
-
+            dts challenges config --docker-username bea
       - run:
           name: "Challenges info"
           # language=bash
@@ -90,7 +90,7 @@ jobs:
           command: |
             dts tok verify ${token_dt1_bea}
             dts tok set ${token_dt1_bea}
-
+            dts challenges config --docker-username bea
       - run:
           name: "Challenges info"
           # language=bash
