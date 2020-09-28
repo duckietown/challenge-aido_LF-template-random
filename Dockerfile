@@ -7,9 +7,11 @@ RUN echo PIP_INDEX_URL=${PIP_INDEX_URL}
 
 WORKDIR /project
 
+
 COPY requirements.* ./
-RUN pip install -U pip>=20.2
-RUN pip install --use-feature=2020-resolver -r requirements.resolved && rm -rf /root/.cache
+RUN cat requirements.* > .requirements.txt
+RUN pip3 install -U pip>=20.2
+RUN pip3 install --use-feature=2020-resolver -r .requirements.txt
 
 COPY . .
 

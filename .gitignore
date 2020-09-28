@@ -1,2 +1,6 @@
 evaluator.log
 output-local-evaluation
+requirements.resolved
+challenges-docker.log
+evaluator.log
+local-evaluator.log
