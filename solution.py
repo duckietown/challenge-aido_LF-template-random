@@ -7,12 +7,13 @@ from PIL import Image
 
 from aido_schemas import (
     Context,
-    Duckiebot1Commands,
-    Duckiebot1Observations,
+    DB20Commands,
+    DB20Observations,
     EpisodeStart,
     JPGImage,
     LEDSCommands,
-    protocol_agent_duckiebot1,
+    logger,
+    protocol_agent_DB20,
     PWMCommands,
     RGB,
     wrap_direct,
@@ -32,8 +33,11 @@ class RandomAgent:
     def on_received_episode_start(self, context: Context, data: EpisodeStart):
         context.info(f'Starting episode "{data.episode_name}".')
 
-    def on_received_observations(self, context: Context, data: Duckiebot1Observations):
+    def on_received_observations(self, context: Context, data: DB20Observations):
+        logger.info("received", data=data)
         camera: JPGImage = data.camera
+        odometry = data.odometry
+        print(odometry)
         _rgb = jpg2rgb(camera.jpg_data)
 
     def on_received_get_commands(self, context: Context):
@@ -50,7 +54,7 @@ class RandomAgent:
         grey = RGB(0.0, 0.0, 0.0)
         led_commands = LEDSCommands(grey, grey, grey, grey, grey)
         pwm_commands = PWMCommands(motor_left=pwm_left, motor_right=pwm_right)
-        commands = Duckiebot1Commands(pwm_commands, led_commands)
+        commands = DB20Commands(pwm_commands, led_commands)
         context.write("commands", commands)
 
     def finish(self, context: Context):
@@ -70,7 +74,7 @@ def jpg2rgb(image_data: bytes) -> np.ndarray:
 
 def main():
     node = RandomAgent()
-    protocol = protocol_agent_duckiebot1
+    protocol = protocol_agent_DB20
     wrap_direct(node=node, protocol=protocol)
 
 
