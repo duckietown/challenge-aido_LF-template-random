@@ -16,4 +16,6 @@ RUN  pip3 install --use-feature=2020-resolver -r .requirements.txt
 
 COPY . .
 
+RUN PYTHONPATH=. python3 -c "from solution import *"
+
 ENTRYPOINT ["python3", "solution.py"]

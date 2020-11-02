@@ -4,3 +4,4 @@ requirements.resolved
 challenges-docker.log
 evaluator.log
 local-evaluator.log
+.DS_Store
