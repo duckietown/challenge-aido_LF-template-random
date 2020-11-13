@@ -51,8 +51,8 @@ class RandomAgent:
 
         # pwm_left = 1.0
         # pwm_right = 1.0
-        grey = RGB(0.0, 0.0, 0.0)
-        led_commands = LEDSCommands(grey, grey, grey, grey, grey)
+        col = RGB(0.0, 0.0, 1.0)
+        led_commands = LEDSCommands(col, col, col, col, col)
         pwm_commands = PWMCommands(motor_left=pwm_left, motor_right=pwm_right)
         commands = DB20Commands(pwm_commands, led_commands)
         context.write("commands", commands)
