@@ -17,6 +17,7 @@ from aido_schemas import (
     PWMCommands,
     RGB,
     wrap_direct,
+    GetCommands,
 )
 
 
@@ -40,7 +41,7 @@ class RandomAgent:
         print(odometry)
         _rgb = jpg2rgb(camera.jpg_data)
 
-    def on_received_get_commands(self, context: Context):
+    def on_received_get_commands(self, context: Context, data: GetCommands):
         if self.n == 0:
             pwm_left = 0.0
             pwm_right = 0.0
@@ -48,6 +49,23 @@ class RandomAgent:
             pwm_left = np.random.uniform(0.5, 1.0)
             pwm_right = np.random.uniform(0.5, 1.0)
         self.n += 1
+
+        t = data.at_time
+        d = 1.0
+        phase = int(t / d) % 4
+
+        if phase == 0:
+            pwm_right = +1
+            pwm_left = -1
+        elif phase == 1:
+            pwm_right = +1
+            pwm_left = +1
+        elif phase == 2:
+            pwm_right = -1
+            pwm_left = +1
+        elif phase == 3:
+            pwm_right = -1
+            pwm_left = -1
 
         # pwm_left = 1.0
         # pwm_right = 1.0
