@@ -54,18 +54,18 @@ class RandomAgent:
         d = 1.0
         phase = int(t / d) % 4
 
-        if phase == 0:
-            pwm_right = +1
-            pwm_left = -1
-        elif phase == 1:
-            pwm_right = +1
-            pwm_left = +1
-        elif phase == 2:
-            pwm_right = -1
-            pwm_left = +1
-        elif phase == 3:
-            pwm_right = -1
-            pwm_left = -1
+        # if phase == 0:
+        #     pwm_right = +1
+        #     pwm_left = -1
+        # elif phase == 1:
+        #     pwm_right = +1
+        #     pwm_left = +1
+        # elif phase == 2:
+        #     pwm_right = -1
+        #     pwm_left = +1
+        # elif phase == 3:
+        #     pwm_right = -1
+        #     pwm_left = -1
 
         # pwm_left = 1.0
         # pwm_right = 1.0
