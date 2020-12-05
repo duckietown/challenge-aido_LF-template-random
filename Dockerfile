@@ -4,21 +4,18 @@ ARG MAJOR=daffy
 ARG BASE_TAG=${MAJOR}-${ARCH}
 FROM ${AIDO_REGISTRY}/duckietown/dt-commons:${BASE_TAG}
 
-ARG PIP_INDEX_URL
+ARG PIP_INDEX_URL="https://pypi.org/simple"
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 RUN echo PIP_INDEX_URL=${PIP_INDEX_URL}
 
 WORKDIR /code
 
-
-RUN pip3 install -U "pip>=20.2"
 COPY requirements.* ./
 RUN cat requirements.* > .requirements.txt
-RUN  pip3 install --use-feature=2020-resolver -r .requirements.txt
-
+RUN python3 -m pip install -r .requirements.txt
 
 COPY . .
 
-RUN PYTHONPATH=. python3 -c "from solution import *"
+RUN node-launch --config node_launch.yaml --check
 
-CMD ["python3", "solution.py"]
+ENTRYPOINT ["node-launch", "--config", "node_launch.yaml"]
