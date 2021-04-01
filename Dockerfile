@@ -8,7 +8,7 @@ ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 RUN echo PIP_INDEX_URL=${PIP_INDEX_URL}
 
-WORKDIR /project
+WORKDIR /code
 
 
 RUN pip3 install -U "pip>=20.2"
