@@ -2,7 +2,7 @@ ARG AIDO_REGISTRY=docker.io
 ARG ARCH=amd64
 ARG MAJOR=daffy
 ARG BASE_TAG=${MAJOR}-${ARCH}
-FROM ${AIDO_REGISTRY}/duckietown/aido-base-python3:daffy-amd64
+FROM ${AIDO_REGISTRY}/duckietown/aido-base-python3:${BASE_TAG}
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
@@ -21,4 +21,4 @@ COPY . .
 
 RUN PYTHONPATH=. python3 -c "from solution import *"
 
-ENTRYPOINT ["python3", "solution.py"]
+CMD ["python3", "solution.py"]
