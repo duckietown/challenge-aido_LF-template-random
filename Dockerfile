@@ -2,7 +2,7 @@ ARG AIDO_REGISTRY=docker.io
 ARG ARCH=amd64
 ARG MAJOR=daffy
 ARG BASE_TAG=${MAJOR}-${ARCH}
-FROM ${AIDO_REGISTRY}/duckietown/aido-base-python3:${BASE_TAG}
+FROM ${AIDO_REGISTRY}/duckietown/dt-commons:${BASE_TAG}
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
