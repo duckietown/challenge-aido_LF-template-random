@@ -4,6 +4,7 @@ import io
 
 import numpy as np
 from PIL import Image
+# from zuper_nodes import TimingInfo
 
 from aido_schemas import (
     Context,
@@ -34,11 +35,10 @@ class RandomAgent:
     def on_received_episode_start(self, context: Context, data: EpisodeStart):
         context.info(f'Starting episode "{data.episode_name}".')
 
-    def on_received_observations(self, context: Context, data: DB20Observations):
-        logger.info("received", data=data)
+    def on_received_observations(self, context: Context, data: DB20Observations, timing):
+        logger.info("received", data=data, timing=timing)
         camera: JPGImage = data.camera
         odometry = data.odometry
-        print(odometry)
         _rgb = jpg2rgb(camera.jpg_data)
 
     def on_received_get_commands(self, context: Context, data: GetCommands):
