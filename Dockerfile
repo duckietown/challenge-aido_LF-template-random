@@ -1,8 +1,8 @@
-ARG AIDO_REGISTRY=docker.io
+ARG DOCKER_REGISTRY=docker.io
 ARG ARCH=amd64
 ARG MAJOR=daffy
 ARG BASE_TAG=${MAJOR}-${ARCH}
-FROM ${AIDO_REGISTRY}/duckietown/dt-commons:${BASE_TAG}
+FROM ${DOCKER_REGISTRY}/duckietown/dt-commons:${BASE_TAG}
 
 ARG PIP_INDEX_URL="https://pypi.org/simple"
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
