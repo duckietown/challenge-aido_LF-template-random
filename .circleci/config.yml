@@ -15,7 +15,7 @@ workflows:
           branches:
             ignore: /daffy-staging.*/
 jobs:
-  submit-daffy-stage: &template
+  submit: &template
     docker:
     - image: ${DOCKER_REGISTRY}/duckietown/aido-submission-ci-test:daffy-amd64
       auth:
@@ -68,8 +68,8 @@ jobs:
           dts challenges submit --impersonate 1639 --challenge aido-hello-sim-validation --user-label "${name}"
           dts challenges follow --label "${name}"
 
-
-  test-daffy-prod: *template
+  submit-daffy-prod: *template
+  submit-daffy-stage: *template
 
 #  submit:
 #    docker:
