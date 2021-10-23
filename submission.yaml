@@ -7,3 +7,4 @@ protocol: aido2_db18_agent-z2
 user-label: template-random
 # any JSON payload
 user-payload: {}
+validation_challenge: aido-hello-sim-validation
