@@ -63,7 +63,7 @@ jobs:
         # language=bash
         command: |
           set -x
-          dts challenges evaluate --challenge aido-hello-sim-validation
+          #dts challenges evaluate --challenge aido-hello-sim-validation
           name="$CIRCLE_BRANCH-$CIRCLE_SHA1"
           dts challenges submit --impersonate 1639 --challenge aido-hello-sim-validation --user-label "${name}"
           dts challenges follow --label "${name}"
