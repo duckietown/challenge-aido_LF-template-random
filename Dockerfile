@@ -18,4 +18,4 @@ COPY . .
 
 RUN node-launch --config node_launch.yaml --check
 
-ENTRYPOINT ["node-launch", "--config", "node_launch.yaml"]
+CMD ["node-launch", "--config", "node_launch.yaml"]
