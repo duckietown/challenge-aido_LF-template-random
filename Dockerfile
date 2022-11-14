@@ -1,7 +1,7 @@
 ARG DOCKER_REGISTRY=docker.io
 ARG ARCH=amd64
 ARG MAJOR=daffy
-ARG BASE_TAG=${MAJOR}
+ARG BASE_TAG=${MAJOR}-${ARCH}
 FROM ${DOCKER_REGISTRY}/duckietown/dt-commons:${BASE_TAG}
 
 ARG PIP_INDEX_URL="https://pypi.org/simple"
